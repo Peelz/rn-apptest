@@ -1,0 +1,38 @@
+default_platform(:android)
+
+platform :android do
+  # Android Lanes
+  desc 'Build the Android application.'
+
+  # Build with sign task
+    lane :build do |options|
+    gradle(
+      task: 'clean',
+    )
+    gradle(
+      task: options[:build_task],
+      build_type: options[:build_type],
+      flavor: options[:build_flavor],
+      print_command: false,
+      properties: {
+        'android.injected.signing.store.file' => options[:keystore_file],
+        'android.injected.signing.store.password' => options[:keystore_store_password],
+        'android.injected.signing.key.alias' => options[:keystore_alias],
+        'android.injected.signing.key.password' => options[:keystore_key_password]
+      }
+    )
+  end
+
+  # Publish to Google Play Production Store
+  lane :publish_production_play_store do |options|
+
+    upload_to_play_store(
+      track: 'production',
+      json_key: options[:gg_json_file],
+      aab: android_abb_path,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+end
