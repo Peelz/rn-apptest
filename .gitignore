@@ -57,3 +57,9 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+lane_context.json
+Matchfile
+*.cer
+*.p12
+*.p8
