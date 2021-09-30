@@ -1,31 +1,37 @@
 default_platform(:android)
 
 platform :android do
+  after_all do |_lane, _options|
+    File.open('lane_context.json', 'w') do |f|
+      f.write(lane_context.to_json)
+    end
+  end
   # Android Lanes
   desc 'Build the Android application.'
-
   # Build with sign task
-    lane :build do |options|
+  lane :build do |options|
     gradle(
-      task: 'clean',
+      task: 'clean'
     )
     gradle(
-      task: options[:build_task],
+      task: options[:task],
       build_type: options[:build_type],
       flavor: options[:build_flavor],
       print_command: false,
       properties: {
+        'android.injected.signing.key.alias' => options[:keystore_alias],
         'android.injected.signing.store.file' => options[:keystore_file],
         'android.injected.signing.store.password' => options[:keystore_store_password],
-        'android.injected.signing.key.alias' => options[:keystore_alias],
         'android.injected.signing.key.password' => options[:keystore_key_password]
       }
     )
   end
 
+  lane :test do
+    p ENV['TEST']
+  end
   # Publish to Google Play Production Store
   lane :publish_production_play_store do |options|
-
     upload_to_play_store(
       track: 'production',
       json_key: options[:gg_json_file],

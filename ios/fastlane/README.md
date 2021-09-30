@@ -15,20 +15,30 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
-## Android
-### android build
+## iOS
+### ios build_internal
 ```
-fastlane android build
-```
-Build the Android application.
-### android test
-```
-fastlane android test
+fastlane ios build_internal
 ```
 
-### android publish_production_play_store
+### ios export_key_json
 ```
-fastlane android publish_production_play_store
+fastlane ios export_key_json
+```
+
+### ios local_resign
+```
+fastlane ios local_resign
+```
+
+### ios get_cert
+```
+fastlane ios get_cert
+```
+
+### ios firebase_distribute
+```
+fastlane ios firebase_distribute
 ```
 
 

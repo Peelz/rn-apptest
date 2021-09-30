@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "813935681697",
+    "project_id": "api-8249773475442224861-911660",
+    "storage_bucket": "api-8249773475442224861-911660.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813935681697:android:da81196d2dadb04c6810e0",
+        "android_client_info": {
+          "package_name": "com.peelz.exautomate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813935681697-3r49dcqql8r2bi6cr3dl0qicvthufs47.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRK1PeY2Pzh33pEt4hDx3AyzfwYx9b-T8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813935681697-3r49dcqql8r2bi6cr3dl0qicvthufs47.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "813935681697-2begrpia7r6ro5ruhuma57drrflb8k9i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.peelz.exautomate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

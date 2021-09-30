@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dexprotector>
+    <verbose>false</verbose>
+    <optimize>false</optimize>
+    <signMode>release</signMode>
+    <sha256CertificateFingerprint>8D:18:2C:10:93:C9:3C:5E:65:98:FF:9D:82:82:BA:9C:8A:FF:C0:D0:80:BC:75:64:BF:7F:2A:9E:A7:A5:EB:9B</sha256CertificateFingerprint>
+    <stringEncryption mode="all">
+        <filters>
+            <filter><![CDATA[glob:!android/**]]></filter>
+            <filter><![CDATA[glob:!androidx/**]]></filter>
+            <filter><![CDATA[glob:!com/crashlytics/**]]></filter>
+            <filter><![CDATA[glob:!com/facebook/**]]></filter>
+            <filter><![CDATA[glob:!com/google/commons/**]]></filter>
+            <filter><![CDATA[glob:!com/activeandroid/**]]></filter>
+            <filter><![CDATA[glob:!com/twitter/**]]></filter>
+            <filter><![CDATA[glob:!com/flurry/**]]></filter>
+            <filter><![CDATA[glob:!org/**]]></filter>
+            <filter><![CDATA[glob:!java/**]]></filter>
+            <filter><![CDATA[glob:!javax/**]]></filter>
+            <filter><![CDATA[glob:!rx/**]]></filter>
+            <filter><![CDATA[glob:!retrofit/**]]></filter>
+            <filter><![CDATA[glob:!io/fabric/**]]></filter>
+            <filter><![CDATA[glob:!twitter4j/**]]></filter>
+            <filter><![CDATA[glob:!com/newrelic/**]]></filter>
+            <filter><![CDATA[glob:!com/squareup/**]]></filter>
+        </filters>
+    </stringEncryption>
+    <classEncryption mode="all">
+        <filters>
+            <filter><![CDATA[glob:!android/**]]></filter>
+            <filter><![CDATA[glob:!androidx/**]]></filter>
+            <filter><![CDATA[glob:!com/crashlytics/**]]></filter>
+            <filter><![CDATA[glob:!com/facebook/**]]></filter>
+            <filter><![CDATA[glob:!com/google/commons/**]]></filter>
+            <filter><![CDATA[glob:!com/activeandroid/**]]></filter>
+            <filter><![CDATA[glob:!com/twitter/**]]></filter>
+            <filter><![CDATA[glob:!com/flurry/**]]></filter>
+            <filter><![CDATA[glob:!org/**]]></filter>
+            <filter><![CDATA[glob:!java/**]]></filter>
+            <filter><![CDATA[glob:!javax/**]]></filter>
+            <filter><![CDATA[glob:!rx/**]]></filter>
+            <filter><![CDATA[glob:!retrofit/**]]></filter>
+            <filter><![CDATA[glob:!io/fabric/**]]></filter>
+            <filter><![CDATA[glob:!twitter4j/**]]></filter>
+            <filter><![CDATA[glob:!com/newrelic/**]]></filter>
+            <filter><![CDATA[glob:!com/squareup/**]]></filter>
+        </filters>
+    </classEncryption>
+    <hideAccess mode="all">
+        <filters>
+            <filter><![CDATA[glob:!android/**]]></filter>
+            <filter><![CDATA[glob:!androidx/**]]></filter>
+            <filter><![CDATA[glob:!com/crashlytics/**]]></filter>
+            <filter><![CDATA[glob:!com/facebook/**]]></filter>
+            <filter><![CDATA[glob:!com/google/commons/**]]></filter>
+            <filter><![CDATA[glob:!com/activeandroid/**]]></filter>
+            <filter><![CDATA[glob:!com/twitter/**]]></filter>
+            <filter><![CDATA[glob:!com/flurry/**]]></filter>
+            <filter><![CDATA[glob:!org/**]]></filter>
+            <filter><![CDATA[glob:!java/**]]></filter>
+            <filter><![CDATA[glob:!javax/**]]></filter>
+            <filter><![CDATA[glob:!rx/**]]></filter>
+            <filter><![CDATA[glob:!retrofit/**]]></filter>
+            <filter><![CDATA[glob:!io/fabric/**]]></filter>
+            <filter><![CDATA[glob:!twitter4j/**]]></filter>
+            <filter><![CDATA[glob:!com/newrelic/**]]></filter>
+            <filter><![CDATA[glob:!com/squareup/**]]></filter>
+        </filters>
+    </hideAccess>
+</dexprotector>

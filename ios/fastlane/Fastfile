@@ -1,0 +1,138 @@
+default_platform(:ios)
+
+ISSUER_ID="4cec296a-a4b4-40d4-8564-f9045cd08508"
+KEY_ID="364Z3J8D49"
+
+platform :ios do
+  lane :build_internal do |options|
+    # o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
+    # rand_str = string = (0...50).map { o[rand(o.length)] }.join
+    # ENV['MATCH_KEYCHAIN_PASSWORD'] = rand_str
+
+    app_identifier = options[:app_identifier]
+    project_name = options[:project_name]
+    work_path = options[:work_path]
+    project_type = options[:project_type]
+    build_configuration = "Release"
+    xcodeproj_path = File.join(work_path, project_name + ".xcodeproj")
+    team_id = options[:team_id]
+    export_method = options[:export_method] || "enterprise"
+    out_dir = options[:out_dir] || "./build"
+
+    build_args = {
+      clean: true,
+      configuration: build_configuration,
+      scheme: options[:scheme],
+      output_directory: out_dir,
+      destination: "generic/platform=iOS",
+      export_options: {
+        method: export_method, # app-store, validation, ad-hoc, package, enterprise, development, developer-id, and mac-application
+      }
+    }
+
+    if project_type == "xcworkspace"
+      build_args[:workspace] = File.join(work_path, project_name + ".xcworkspace")
+    else
+      build_args[:project] = xcodeproj_path
+    end
+
+    create_keychain(
+      name: 'ci-keychain',
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      lock_when_sleeps: true,
+      password: 'defaultpassword'
+    )
+    # unlock_keychain(path: "~/Library/Keychains/ci-keychain-db", password: 'defaultpassword')
+
+    import_certificate(
+      certificate_path: "AppleWWDRCA.cer",
+      keychain_name: 'ci-keychain',
+      keychain_password: 'defaultpassword'
+    )
+    
+    app_store_connect_api_key(
+        key_id: options[:key_id],
+        issuer_id: options[:issuer_id],
+        key_filepath: options[:key_filepath],
+        duration: 1200, # optional (maximum 1200)
+        in_house: false, # optional but may be required if using match/sigh
+    )
+
+    match(
+      app_identifier: app_identifier,
+      type: export_method, # appstore, adhoc, development, enterprise, developer_id, mac_installer_distribution
+      team_id: team_id,
+      storage_mode: "s3",
+      s3_region: options[:s3_region],
+      s3_access_key: options[:s3_access_key],
+      s3_secret_access_key: options[:s3_secret_access_key],
+      s3_bucket: options[:s3_bucket],
+      keychain_name: 'ci-keychain',
+      keychain_password: 'defaultpassword'
+    )
+
+    update_code_signing_settings(
+        use_automatic_signing: false,
+        path: xcodeproj_path,
+        team_id: team_id
+    )
+
+    update_project_provisioning(
+        xcodeproj: xcodeproj_path,
+        profile: ENV["sigh_#{app_identifier}_#{export_method}_profile-path"],
+        build_configuration: build_configuration
+    )
+    
+    # build_app(
+    #     # xcargs: "-allowProvisioningUpdates",
+    #     **build_args
+    # )
+
+  end
+
+  lane :export_key_json do |options|
+    app_store_connect_api_key(
+      key_id: KEY_ID,
+      issuer_id: ISSUER_ID,
+      key_filepath: options[:key_filepath],
+      duration: 1200, # optional (maximum 1200)
+      in_house: false # optional but may be required if using match/sigh
+    )
+    # puts "#{lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]}"
+    File.open("app_connect.json","w") do |f|
+      f.write(lane_context[SharedValues::APP_STORE_CONNECT_API_KEY].to_json)
+    end
+  end
+
+  lane :local_resign do |options|
+    match(type: options[:type])
+    provisioning_profile ENV["sigh_"+options[:app_id]+"_"+options[:type]+"_profile-path"]
+    resign(
+      ipa: "build/TestReactNative.ipa", # can omit if using the `ipa` action
+      signing_identity: "Apple Distribution: Anucha Maitripirom (PHN8F24735)",
+      # provisioning_profile: provisioning_profile, # can omit if using the _sigh_ action
+    )
+  end
+
+  lane :get_cert do |options|
+    match(type: options[:type])
+    # cert
+    get_certificates(
+      # development: true,
+      # username: "user@email.com"
+    )
+    # cert=Spaceship.certificate.development.all.find_all { |i| i.name == "Helmut Januschka" }
+    # puts cert.first.owner_id
+  end
+
+  lane :firebase_distribute do |options|
+    firebase_app_distribution(
+        app: options[:firebase_app],
+        testers: options[:firebase_testers],
+        release_notes: options[:firebase_release_notes],
+        ipa_path: options[:firebase_ipa_path]
+    )
+  end
+end

@@ -159,7 +159,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				B80028916BBF1B3B6F27A74A /* [CP] Embed Pods Frameworks */,
 				8F9D7350389A8C71F206ACBD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -182,7 +181,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				8D506B1B46C48271D3185D6E /* [CP] Embed Pods Frameworks */,
 				1B492340DCA6A7C97D67273F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -281,23 +279,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestReactNative/Pods-TestReactNative-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8D506B1B46C48271D3185D6E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TestReactNative/Pods-TestReactNative-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TestReactNative/Pods-TestReactNative-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestReactNative/Pods-TestReactNative-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8F9D7350389A8C71F206ACBD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,23 +294,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestReactNative-TestReactNativeTests/Pods-TestReactNative-TestReactNativeTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B80028916BBF1B3B6F27A74A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TestReactNative-TestReactNativeTests/Pods-TestReactNative-TestReactNativeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TestReactNative-TestReactNativeTests/Pods-TestReactNative-TestReactNativeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestReactNative-TestReactNativeTests/Pods-TestReactNative-TestReactNativeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E3B3E14CBE08DBDDF71CBADF /* [CP] Check Pods Manifest.lock */ = {
@@ -431,6 +395,8 @@
 			baseConfigurationReference = BF170ECB3EAA566C93E00139 /* Pods-TestReactNative-TestReactNativeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = PHN8F24735;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -458,7 +424,9 @@
 			baseConfigurationReference = 4B98A00D8BB5C4C3E01E34CF /* Pods-TestReactNative-TestReactNativeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = PHN8F24735;
 				INFOPLIST_FILE = TestReactNativeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -473,6 +441,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "be927141-b8b9-44be-82a1-9591d7d81497";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.peelz.exautomate";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestReactNative.app/TestReactNative";
 			};
 			name = Release;
@@ -483,6 +453,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PHN8F24735;
 				ENABLE_BITCODE = NO;
@@ -498,6 +470,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peelz.exautomate;
 				PRODUCT_NAME = TestReactNative;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -510,6 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PHN8F24735;
 				INFOPLIST_FILE = TestReactNative/Info.plist;
@@ -524,6 +498,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peelz.exautomate;
 				PRODUCT_NAME = TestReactNative;
+				PROVISIONING_PROFILE = "be927141-b8b9-44be-82a1-9591d7d81497";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.peelz.exautomate";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
