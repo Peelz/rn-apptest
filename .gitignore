@@ -39,8 +39,9 @@ yarn-error.log
 buck-out/
 \.buckd/
 *.keystore
+*.jks
 !debug.keystore
-
+keystore.properties
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
